@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8880:8880"
+    environment:
+      - PHONIKUD_USE_GPU=false
+      - PHONIKUD_HOST=0.0.0.0
+      - PHONIKUD_PORT=8880
+    volumes:
+      - model-cache:/app/api/models
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8880/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  ui:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.ui
+    ports:
+      - "7860:7860"
+    environment:
+      - API_BASE_URL=http://api:8880
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  model-cache:
