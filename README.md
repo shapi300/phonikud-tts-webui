@@ -232,6 +232,8 @@ phonikud-tts-webui/
 This project builds on:
 - [Phonikud](https://github.com/thewh1teagle/phonikud) - Hebrew text to phoneme conversion
 - [phonikud-tts](https://github.com/thewh1teagle/phonikud-tts) - The TTS library
+- [Piper](https://github.com/rhasspy/piper) - Fast, local neural text to speech system - [piper-docs](https://rhasspy.github.io/piper/)
+- [Gradio](https://github.com/gradio-app/gradio) - Python library for creating web interfaces - [gradio.app](https://www.gradio.app/)
 - [Kokoro-FastAPI](https://github.com/remsky/Kokoro-FastAPI) - UI design inspiration
 
 ## Important Note About the Voice
